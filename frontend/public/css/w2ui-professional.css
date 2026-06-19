@@ -1,0 +1,1866 @@
+/*!
+ * w2ui Professional Theme v2.0 - Sobrio y Profesional
+ * Fuentes enlazadas externamente (no incrustadas)
+ */
+
+/* ============================================================
+   FUENTES EXTERNAS (enlazadas, no incrustadas)
+   ============================================================ */
+
+/* Font Awesome u otra fuente de iconos - usar CDN */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+/* Open Sans como fallback */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
+/* Noto Sans como alternativa profesional */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap');
+
+/* ============================================================
+   ICONOS - Usando Font Awesome gratuito (CDN)
+   ============================================================ */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+/* ============================================================
+   RESET Y BASE
+   ============================================================ */
+.w2ui-reset {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: 'Inter', 'Noto Sans', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #1f2937;
+  background-color: #ffffff;
+}
+
+.w2ui-reset * {
+  color: inherit;
+  line-height: 1.5;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+.w2ui-reset table {
+  max-width: none;
+  background-color: transparent;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: none;
+}
+
+.w2ui-reset table tr th,
+.w2ui-reset table tr td {
+  font-family: 'Inter', 'Noto Sans', 'Open Sans', sans-serif;
+  font-size: 13px;
+}
+
+/* ============================================================
+   INPUTS Y CONTROLES DE FORMULARIO
+   ============================================================ */
+.w2ui-reset input:not([type=button]):not([type=submit]):not([type=checkbox]):not([type=radio]),
+.w2ui-reset select,
+.w2ui-reset textarea {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  vertical-align: baseline;
+  padding: 8px 12px;
+  margin: 0;
+  font-size: 13px;
+  font-family: 'Inter', 'Noto Sans', 'Open Sans', sans-serif;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.w2ui-reset input:not([type=button]):not([type=submit]):not([type=checkbox]):not([type=radio]):focus,
+.w2ui-reset select:focus,
+.w2ui-reset textarea:focus {
+  background-color: #ffffff;
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.w2ui-reset select {
+  padding: 8px 28px 8px 12px;
+  height: auto;
+  font-size: 13px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size: 16px;
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.w2ui-centered {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+}
+
+.w2ui-disabled,
+.w2ui-readonly {
+  background-color: #f3f4f6;
+  color: #9ca3af;
+}
+
+input.w2ui-focus:not(button),
+textarea.w2ui-focus,
+select.w2ui-focus,
+div[contenteditable].w2ui-focus {
+  outline-style: auto;
+  outline-color: #3b82f6;
+  outline-width: 2px;
+}
+
+/* ============================================================
+   BOTONES
+   ============================================================ */
+input[type=button].w2ui-btn,
+button.w2ui-btn {
+  position: relative;
+  display: inline-block;
+  border-radius: 6px;
+  margin: 0px 3px;
+  padding: 8px 16px;
+  color: #374151;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'Inter', 'Noto Sans', 'Open Sans', sans-serif;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  background-image: none;
+  outline: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  min-width: 75px;
+  transition: all 0.2s ease;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+input[type=button].w2ui-btn:hover,
+button.w2ui-btn:hover {
+  text-decoration: none;
+  background: #f9fafb;
+  border-color: #9ca3af;
+  color: #111827;
+}
+
+input[type=button].w2ui-btn:active,
+button.w2ui-btn:active,
+input[type=button].w2ui-btn.clicked,
+button.w2ui-btn.clicked {
+  background: #f3f4f6;
+  transform: translateY(1px);
+}
+
+input[type=button].w2ui-btn:focus:before,
+button.w2ui-btn:focus:before {
+  content: "";
+  border: 1px dashed #9ca3af;
+  border-radius: 8px;
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 2px;
+  right: 2px;
+  pointer-events: none;
+}
+
+/* Botón primario */
+input[type=button].w2ui-btn-primary,
+button.w2ui-btn-primary {
+  color: white;
+  background: #3b82f6;
+  border: 1px solid #3b82f6;
+  text-shadow: none;
+}
+
+input[type=button].w2ui-btn-primary:hover,
+button.w2ui-btn-primary:hover {
+  color: white;
+  background: #2563eb;
+  border: 1px solid #2563eb;
+}
+
+input[type=button].w2ui-btn-primary:active,
+button.w2ui-btn-primary:active,
+input[type=button].w2ui-btn-primary.clicked,
+button.w2ui-btn-primary.clicked {
+  color: white;
+  background: #1d4ed8;
+  border: 1px solid #1e40af;
+}
+
+/* Botón éxito (verde) */
+input[type=button].w2ui-btn-success,
+button.w2ui-btn-success {
+  color: white;
+  background: #10b981;
+  border: 1px solid #10b981;
+  text-shadow: none;
+}
+
+input[type=button].w2ui-btn-success:hover,
+button.w2ui-btn-success:hover {
+  color: white;
+  background: #059669;
+  border: 1px solid #059669;
+}
+
+input[type=button].w2ui-btn-success:active,
+button.w2ui-btn-success:active,
+input[type=button].w2ui-btn-success.clicked,
+button.w2ui-btn-success.clicked {
+  color: white;
+  background: #047857;
+  border: 1px solid #065f46;
+}
+
+/* Botón peligro (rojo) */
+input[type=button].w2ui-btn-danger,
+button.w2ui-btn-danger {
+  color: white;
+  background: #ef4444;
+  border: 1px solid #ef4444;
+  text-shadow: none;
+}
+
+input[type=button].w2ui-btn-danger:hover,
+button.w2ui-btn-danger:hover {
+  color: white;
+  background: #dc2626;
+  border: 1px solid #dc2626;
+}
+
+input[type=button].w2ui-btn-danger:active,
+button.w2ui-btn-danger:active,
+input[type=button].w2ui-btn-danger.clicked,
+button.w2ui-btn-danger.clicked {
+  color: white;
+  background: #b91c1c;
+  border: 1px solid #991b1b;
+}
+
+/* Botón advertencia (naranja) */
+input[type=button].w2ui-btn-warning,
+button.w2ui-btn-warning {
+  color: white;
+  background: #f59e0b;
+  border: 1px solid #f59e0b;
+  text-shadow: none;
+}
+
+input[type=button].w2ui-btn-warning:hover,
+button.w2ui-btn-warning:hover {
+  color: white;
+  background: #d97706;
+  border: 1px solid #d97706;
+}
+
+/* Botón pequeño */
+input[type=button].w2ui-btn-small,
+button.w2ui-btn-small {
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin: 0px;
+  min-width: 0px;
+  font-size: 12px;
+}
+
+input[type=button].w2ui-btn-small:focus:before,
+button.w2ui-btn-small:focus:before {
+  border-radius: 4px;
+}
+
+/* Botón deshabilitado */
+input[type=button].w2ui-btn:disabled,
+button.w2ui-btn:disabled {
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  color: #9ca3af;
+  text-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ============================================================
+   ICONOS COMUNES (usando Font Awesome)
+   ============================================================ */
+.w2ui-icon {
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  overflow: hidden;
+  margin: 2px 2px;
+  display: inline-block;
+}
+
+/* Reemplazar iconos de w2ui-font con Font Awesome */
+.w2ui-icon-box:before,
+.w2ui-icon-check:before,
+.w2ui-icon-colors:before,
+.w2ui-icon-columns:before,
+.w2ui-icon-cross:before,
+.w2ui-icon-drop:before,
+.w2ui-icon-empty:before,
+.w2ui-icon-info:before,
+.w2ui-icon-paste:before,
+.w2ui-icon-pencil:before,
+.w2ui-icon-plus:before,
+.w2ui-icon-reload:before,
+.w2ui-icon-search:before,
+.w2ui-icon-settings:before {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.w2ui-icon-box:before { content: "\f15c"; }
+.w2ui-icon-check:before { content: "\f00c"; }
+.w2ui-icon-colors:before { content: "\f53e"; }
+.w2ui-icon-columns:before { content: "\f0db"; }
+.w2ui-icon-cross:before { content: "\f00d"; }
+.w2ui-icon-drop:before { content: "\f0d7"; }
+.w2ui-icon-empty:before { content: "\f1b3"; }
+.w2ui-icon-info:before { content: "\f05a"; }
+.w2ui-icon-paste:before { content: "\f0ea"; }
+.w2ui-icon-pencil:before { content: "\f303"; }
+.w2ui-icon-plus:before { content: "\f067"; }
+.w2ui-icon-reload:before { content: "\f2f1"; }
+.w2ui-icon-search:before { content: "\f002"; }
+.w2ui-icon-settings:before { content: "\f013"; }
+
+/* Iconos expandir/colapsar */
+.w2ui-icon-expand:before {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  content: "\f107";
+}
+
+.w2ui-icon-collapse:before {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  content: "\f106";
+}
+
+/* ============================================================
+   TOGGLE SWITCH (On/Off)
+   ============================================================ */
+input[type="checkbox"].w2ui-toggle {
+  position: absolute;
+  opacity: 0;
+  width: 46px;
+  height: 22px;
+  padding: 0px;
+  margin: 0px;
+  margin-left: 2px;
+}
+
+input[type="checkbox"].w2ui-toggle:focus {
+  box-shadow: 0px 0px 1px 2px #bfdbfe;
+}
+
+input[type="checkbox"].w2ui-toggle + div {
+  display: inline-block;
+  width: 46px;
+  height: 22px;
+  border: 1px solid #d1d5db;
+  border-radius: 30px;
+  background-color: #e5e7eb;
+  transition-duration: 0.3s;
+  transition-property: background-color, box-shadow;
+  box-shadow: inset 0 0 0 0px rgba(0, 0, 0, 0.4);
+  margin-left: 2px;
+}
+
+input[type="checkbox"].w2ui-toggle.w2ui-small + div {
+  width: 30px;
+  height: 16px;
+}
+
+input[type="checkbox"].w2ui-toggle:focus + div {
+  box-shadow: 0px 0px 3px 2px #bfdbfe;
+}
+
+input[type="checkbox"].w2ui-toggle:disabled + div {
+  opacity: 0.4;
+}
+
+input[type="checkbox"].w2ui-toggle + div > div {
+  float: left;
+  width: 22px;
+  height: 22px;
+  border-radius: inherit;
+  background: #ffffff;
+  transition-duration: 0.3s;
+  transition-property: transform, background-color, box-shadow;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+  margin-top: -1px;
+  margin-left: -1px;
+}
+
+input[type="checkbox"].w2ui-toggle.w2ui-small + div > div {
+  width: 16px;
+  height: 16px;
+}
+
+input[type="checkbox"].w2ui-toggle:checked + div > div {
+  transform: translate3d(24px, 0, 0);
+  background-color: #ffffff;
+}
+
+input[type="checkbox"].w2ui-toggle.w2ui-small:checked + div > div {
+  transform: translate3d(14px, 0, 0);
+}
+
+input[type="checkbox"].w2ui-toggle:checked + div {
+  border: 1px solid #3b82f6;
+  box-shadow: inset 0 0 0 12px #3b82f6;
+}
+
+input[type="checkbox"].w2ui-toggle:checked:focus + div {
+  box-shadow: 0px 0px 3px 2px #bfdbfe, inset 0 0 0 12px #3b82f6;
+}
+
+input[type="checkbox"].w2ui-toggle:checked + div > div {
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================================
+   LOCK Y MENSAJES DE CARGA
+   ============================================================ */
+.w2ui-lock {
+  display: none;
+  position: absolute;
+  z-index: 1400;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+  background-color: #1f2937;
+}
+
+.w2ui-lock-msg {
+  display: none;
+  position: absolute;
+  z-index: 1400;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  min-width: 120px;
+  max-width: 95%;
+  padding: 16px 24px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 14px;
+  font-family: 'Inter', 'Noto Sans', 'Open Sans', sans-serif;
+  font-weight: 500;
+  background-color: #1f2937;
+  color: white;
+  text-align: center;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.w2ui-lock-msg .w2ui-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* ============================================================
+   SCROLL WRAPPER
+   ============================================================ */
+.w2ui-scroll-wrapper {
+  overflow: hidden;
+}
+
+.w2ui-scroll-left,
+.w2ui-scroll-right {
+  top: 0;
+  width: 24px;
+  height: 100%;
+  cursor: pointer;
+  z-index: 10;
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+}
+
+.w2ui-scroll-left:hover,
+.w2ui-scroll-right:hover {
+  background-color: #f3f4f6;
+}
+
+.w2ui-scroll-left {
+  left: 0;
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.05);
+}
+
+.w2ui-scroll-left:before {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  content: "\f053";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.w2ui-scroll-right {
+  right: 0;
+  box-shadow: -2px 0 4px rgba(0, 0, 0, 0.05);
+}
+
+.w2ui-scroll-right:before {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  content: "\f054";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #6b7280;
+  font-size: 12px;
+}
+
+/* ============================================================
+   NOTIFICACIONES
+   ============================================================ */
+#w2ui-notify {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  left: 0px;
+  right: 0px;
+  bottom: 20px;
+  z-index: 10000;
+  overflow: hidden;
+}
+
+#w2ui-notify > div {
+  position: relative;
+  background-color: #1f2937;
+  color: #ffffff;
+  padding: 12px 48px 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  max-height: 80px;
+  min-width: 200px;
+  max-width: 500px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+#w2ui-notify > div a {
+  color: #93c5fd;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#w2ui-notify > div a:hover {
+  color: #bfdbfe;
+}
+
+#w2ui-notify > div span.w2ui-notify-close {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #9ca3af;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+#w2ui-notify > div span.w2ui-notify-close:hover {
+  background-color: #374151;
+  color: #ffffff;
+}
+
+#w2ui-notify > div.w2ui-notify-error {
+  background-color: #dc2626;
+}
+
+#w2ui-notify > div.w2ui-notify-error .w2ui-notify-close {
+  color: #fca5a5;
+}
+
+#w2ui-notify > div.w2ui-notify-error .w2ui-notify-close:hover {
+  background-color: #991b1b;
+  color: #ffffff;
+}
+
+#w2ui-notify > div.w2ui-notify-success {
+  background-color: #10b981;
+}
+
+/* ============================================================
+   OVERLAY Y TOOLTIP
+   ============================================================ */
+.w2ui-overlay {
+  --tip-size: 8px;
+  position: fixed;
+  z-index: 1700;
+  opacity: 0;
+  transition: opacity 0.15s;
+  border-radius: 8px;
+}
+
+.w2ui-overlay * {
+  box-sizing: border-box;
+}
+
+.w2ui-overlay .w2ui-overlay-body {
+  display: inline-block;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin: 0px;
+  font-size: 12px;
+  font-family: 'Inter', 'Noto Sans', 'Open Sans', sans-serif;
+  color: #1f2937;
+  text-shadow: none;
+  background-color: #ffffff;
+  line-height: 1.4;
+  overflow: auto;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.w2ui-overlay .w2ui-overlay-body.w2ui-light {
+  color: #1f2937;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+}
+
+.w2ui-overlay .w2ui-overlay-body.w2ui-white {
+  color: #1f2937;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+}
+
+/* Flechas del overlay */
+.w2ui-overlay .w2ui-overlay-body.w2ui-arrow-right:before,
+.w2ui-overlay .w2ui-overlay-body.w2ui-arrow-left:after,
+.w2ui-overlay .w2ui-overlay-body.w2ui-arrow-top:before,
+.w2ui-overlay .w2ui-overlay-body.w2ui-arrow-bottom:after {
+  content: "";
+  position: absolute;
+  margin: 0;
+  border: inherit;
+  border-color: inherit;
+  background-color: inherit;
+  width: var(--tip-size, 8px);
+  height: var(--tip-size, 8px);
+  border-bottom-right-radius: 2px;
+  border-bottom-width: 0;
+  border-right-width: 0;
+}
+
+/* ============================================================
+   CALENDARIO
+   ============================================================ */
+.w2ui-calendar {
+  margin: 0px;
+  line-height: 1.4;
+  user-select: none;
+}
+
+.w2ui-calendar.w2ui-overlay-body {
+  border: 1px solid #e5e7eb;
+  color: #1f2937;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.w2ui-calendar .w2ui-cal-title,
+.w2ui-calendar .w2ui-time-title {
+  margin: 0px;
+  padding: 10px;
+  background-color: #f9fafb;
+  border-top: 1px solid #f3f4f6;
+  border-bottom: 1px solid #e5e7eb;
+  color: #1f2937;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.w2ui-calendar .w2ui-cal-previous,
+.w2ui-calendar .w2ui-cal-next {
+  width: 30px;
+  height: 30px;
+  color: #6b7280;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 5px;
+  margin: -4px 1px 0px 1px;
+  cursor: pointer;
+}
+
+.w2ui-calendar .w2ui-cal-previous:hover,
+.w2ui-calendar .w2ui-cal-next:hover {
+  color: #1f2937;
+  border: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+}
+
+.w2ui-calendar .w2ui-cal-days {
+  width: 280px;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.w2ui-calendar .w2ui-cal-days .w2ui-day {
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: #374151;
+  background-color: #ffffff;
+  padding: 8px 0;
+  cursor: pointer;
+  text-align: center;
+  font-size: 13px;
+}
+
+.w2ui-calendar .w2ui-cal-days .w2ui-day.w2ui-today {
+  background-color: #eff6ff;
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+.w2ui-calendar .w2ui-cal-days .w2ui-day:hover {
+  background-color: #f3f4f6;
+}
+
+.w2ui-calendar .w2ui-cal-days .w2ui-day.w2ui-selected {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.w2ui-calendar .w2ui-cal-days .w2ui-day.w2ui-weekday {
+  background-color: #f9fafb;
+  color: #6b7280;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.w2ui-calendar .w2ui-cal-days .w2ui-day.outside {
+  color: #9ca3af;
+}
+
+/* ============================================================
+   MENÚ
+   ============================================================ */
+.w2ui-menu {
+  display: block;
+  color: #1f2937;
+  padding: 4px 0px;
+  border-radius: 8px;
+  overflow-x: hidden;
+  cursor: default;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.w2ui-menu .w2ui-menu-item {
+  display: flex;
+  align-content: stretch;
+  padding: 8px 12px;
+  user-select: none;
+  font-size: 13px;
+}
+
+.w2ui-menu .w2ui-menu-item.w2ui-even {
+  background-color: #ffffff;
+}
+
+.w2ui-menu .w2ui-menu-item.w2ui-odd {
+  background-color: #fcfcfd;
+}
+
+.w2ui-menu .w2ui-menu-item:hover {
+  background-color: #f3f4f6;
+}
+
+.w2ui-menu .w2ui-menu-item.w2ui-selected {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+}
+
+.w2ui-menu .w2ui-menu-item.w2ui-disabled {
+  opacity: 0.5;
+  color: #9ca3af;
+}
+
+.w2ui-menu .w2ui-menu-divider {
+  padding: 4px 0;
+}
+
+.w2ui-menu .w2ui-menu-divider .line {
+  border-top: 1px solid #e5e7eb;
+}
+
+.w2ui-menu .w2ui-menu-divider.has-text {
+  background-color: #f9fafb;
+  padding: 8px 12px;
+}
+
+.w2ui-menu .w2ui-no-items {
+  padding: 16px;
+  text-align: center;
+  color: #9ca3af;
+}
+
+/* ============================================================
+   FORMULARIOS
+   ============================================================ */
+.w2ui-form {
+  position: relative;
+  color: #1f2937;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 0px;
+  overflow: hidden;
+}
+
+.w2ui-form > .w2ui-form-box {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.w2ui-form .w2ui-form-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  padding: 0 16px;
+  overflow: hidden;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1f2937;
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+}
+
+.w2ui-form .w2ui-form-toolbar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 8px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.w2ui-form .w2ui-form-tabs {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  height: 40px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.w2ui-form .w2ui-page {
+  position: absolute;
+  left: 0;
+  right: 0;
+  overflow: auto;
+  padding: 16px;
+  background-color: #ffffff;
+}
+
+.w2ui-form .w2ui-column-container {
+  display: flex;
+  padding: 0;
+}
+
+.w2ui-form .w2ui-buttons {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: right;
+  border-top: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+  padding: 12px 16px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.w2ui-form .w2ui-buttons input[type="button"],
+.w2ui-form .w2ui-buttons button {
+  min-width: 80px;
+  margin-left: 8px;
+}
+
+.w2ui-form input[type=checkbox]:not(.w2ui-toggle),
+.w2ui-form input[type=radio] {
+  margin: 0 4px 0 0;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+}
+
+.w2ui-group-title {
+  padding: 12px 0 4px 0;
+  color: #6b7280;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.w2ui-group-fields {
+  background-color: #ffffff;
+  margin: 8px 0 16px 0;
+  padding: 8px 0;
+  border-top: 1px solid #f3f4f6;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.w2ui-field > label {
+  display: block;
+  float: left;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  width: 120px;
+  padding: 0px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: right;
+  color: #4b5563;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.w2ui-field > div {
+  margin-bottom: 8px;
+  margin-left: 128px;
+  padding: 4px;
+  min-height: 32px;
+  float: none;
+}
+
+.w2ui-field.w2ui-required > div {
+  position: relative;
+}
+
+.w2ui-field.w2ui-required:not(.w2ui-field-inline) > div::before {
+  content: '*';
+  position: absolute;
+  margin-top: 9px;
+  margin-left: -10px;
+  color: #ef4444;
+  font-weight: 600;
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.w2ui-layout {
+  position: relative;
+  overflow: hidden;
+}
+
+.w2ui-layout > div {
+  position: absolute;
+  overflow: hidden;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.w2ui-layout > div .w2ui-panel {
+  display: none;
+  position: absolute;
+  z-index: 120;
+}
+
+.w2ui-layout > div .w2ui-panel .w2ui-panel-title {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  padding: 12px 16px;
+  background-color: #f9fafb;
+  color: #1f2937;
+  font-weight: 600;
+  font-size: 14px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.w2ui-layout > div .w2ui-panel .w2ui-panel-tabs {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  z-index: 2;
+  display: none;
+  overflow: hidden;
+  background-color: #ffffff;
+  padding: 0px;
+}
+
+.w2ui-layout > div .w2ui-panel .w2ui-panel-toolbar {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  z-index: 2;
+  display: none;
+  overflow: hidden;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 6px 12px;
+}
+
+.w2ui-layout > div .w2ui-panel .w2ui-panel-content {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 1;
+  color: inherit;
+  background-color: #ffffff;
+}
+
+.w2ui-layout > div .w2ui-resizer {
+  display: none;
+  position: absolute;
+  z-index: 121;
+  background-color: transparent;
+}
+
+.w2ui-layout > div .w2ui-resizer:hover,
+.w2ui-layout > div .w2ui-resizer.active {
+  background-color: #e5e7eb;
+}
+
+/* ============================================================
+   GRID (Componente principal)
+   ============================================================ */
+.w2ui-grid {
+  position: relative;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden !important;
+  background-color: #ffffff;
+}
+
+.w2ui-grid > .w2ui-grid-box {
+  position: absolute;
+  overflow: hidden;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.w2ui-grid .w2ui-grid-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  padding: 0 16px;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+}
+
+.w2ui-grid .w2ui-grid-toolbar {
+  position: absolute;
+  border-bottom: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  padding: 8px 12px;
+  margin: 0px;
+}
+
+.w2ui-grid .w2ui-grid-toolbar .w2ui-tb-button .w2ui-tb-icon {
+  margin: 2px 0px 0px 0px !important;
+}
+
+.w2ui-grid .w2ui-grid-body {
+  position: absolute;
+  overflow: hidden;
+  padding: 0px;
+  background-color: #ffffff;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.w2ui-grid .w2ui-grid-body .w2ui-grid-columns,
+.w2ui-grid .w2ui-grid-body .w2ui-grid-fcolumns {
+  overflow: hidden;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.w2ui-grid .w2ui-grid-body table {
+  border-spacing: 0px;
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 1px;
+}
+
+.w2ui-grid .w2ui-grid-body table .w2ui-head {
+  margin: 0px;
+  padding: 0px;
+  border-right: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  color: #4b5563;
+  background-color: #f9fafb;
+  background-image: none;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.w2ui-grid .w2ui-grid-body table .w2ui-head > div {
+  padding: 10px 8px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  position: relative;
+}
+
+.w2ui-grid .w2ui-grid-body table td {
+  border-right: 1px solid #f3f4f6;
+  border-bottom: 1px solid #f3f4f6;
+  cursor: default;
+  overflow: hidden;
+}
+
+.w2ui-grid .w2ui-grid-body table td.w2ui-grid-data > div {
+  padding: 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 13px;
+  color: #374151;
+}
+
+.w2ui-grid .w2ui-grid-body .w2ui-grid-records table tr.w2ui-odd,
+.w2ui-grid .w2ui-grid-body .w2ui-grid-frecords table tr.w2ui-odd {
+  color: inherit;
+  background-color: #ffffff;
+}
+
+.w2ui-grid .w2ui-grid-body .w2ui-grid-records table tr.w2ui-odd:hover,
+.w2ui-grid .w2ui-grid-body .w2ui-grid-frecords table tr.w2ui-odd:hover,
+.w2ui-grid .w2ui-grid-body .w2ui-grid-records table tr.w2ui-odd.w2ui-record-hover,
+.w2ui-grid .w2ui-grid-body .w2ui-grid-frecords table tr.w2ui-odd.w2ui-record-hover {
+  background-color: #f3f4f6;
+}
+
+.w2ui-grid .w2ui-grid-body .w2ui-grid-records table tr.w2ui-even,
+.w2ui-grid .w2ui-grid-body .w2ui-grid-frecords table tr.w2ui-even {
+  color: inherit;
+  background-color: #fcfcfd;
+}
+
+.w2ui-grid .w2ui-grid-body .w2ui-grid-records table tr.w2ui-even:hover,
+.w2ui-grid .w2ui-grid-body .w2ui-grid-frecords table tr.w2ui-even:hover,
+.w2ui-grid .w2ui-grid-body .w2ui-grid-records table tr.w2ui-even.w2ui-record-hover,
+.w2ui-grid .w2ui-grid-body .w2ui-grid-frecords table tr.w2ui-even.w2ui-record-hover {
+  background-color: #f3f4f6;
+}
+
+.w2ui-grid .w2ui-grid-body .w2ui-grid-records table tr.w2ui-selected,
+.w2ui-grid .w2ui-grid-body .w2ui-grid-frecords table tr.w2ui-selected,
+.w2ui-grid .w2ui-grid-body .w2ui-grid-records table tr td.w2ui-selected,
+.w2ui-grid .w2ui-grid-body .w2ui-grid-frecords table tr td.w2ui-selected {
+  color: #1f2937 !important;
+  background-color: #eff6ff !important;
+}
+
+.w2ui-grid .w2ui-grid-body .w2ui-grid-records .w2ui-load-more,
+.w2ui-grid .w2ui-grid-body .w2ui-grid-frecords .w2ui-load-more {
+  cursor: pointer;
+  background-color: #f9fafb;
+}
+
+.w2ui-grid .w2ui-grid-body .w2ui-grid-records .w2ui-load-more > div,
+.w2ui-grid .w2ui-grid-body .w2ui-grid-frecords .w2ui-load-more > div {
+  text-align: center;
+  color: #6b7280;
+  padding: 12px;
+  font-size: 13px;
+}
+
+.w2ui-grid .w2ui-grid-body .w2ui-grid-records .w2ui-load-more > div:hover,
+.w2ui-grid .w2ui-grid-body .w2ui-grid-frecords .w2ui-load-more > div:hover {
+  color: #3b82f6;
+  background-color: #f3f4f6;
+}
+
+.w2ui-grid .w2ui-grid-body .w2ui-col-number {
+  width: 40px;
+  color: #6b7280;
+  background-color: #f9fafb;
+}
+
+.w2ui-grid .w2ui-grid-body .w2ui-col-number div {
+  padding: 0px 8px 0px 4px;
+  text-align: right;
+}
+
+.w2ui-grid .w2ui-grid-body .w2ui-col-select {
+  width: 30px;
+}
+
+.w2ui-grid .w2ui-grid-body .w2ui-col-select div {
+  padding: 0px;
+  text-align: center;
+}
+
+.w2ui-grid .w2ui-grid-body .w2ui-col-expand {
+  width: 30px;
+}
+
+.w2ui-grid .w2ui-grid-body .w2ui-col-expand div {
+  padding: 0px;
+  text-align: center;
+}
+
+.w2ui-grid .w2ui-grid-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+  font-size: 12px;
+  height: 36px;
+  overflow: hidden;
+  color: #4b5563;
+  background-color: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+}
+
+.w2ui-grid .w2ui-grid-footer .w2ui-footer-left {
+  float: left;
+}
+
+.w2ui-grid .w2ui-grid-footer .w2ui-footer-right {
+  float: right;
+}
+
+.w2ui-grid .w2ui-grid-footer .w2ui-footer-center .w2ui-footer-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.w2ui-grid .w2ui-grid-footer .w2ui-footer-center .w2ui-footer-nav input[type=text] {
+  padding: 4px 8px;
+  border-radius: 4px;
+  width: 50px;
+  text-align: center;
+}
+
+.w2ui-grid .w2ui-grid-footer .w2ui-footer-center .w2ui-footer-nav a.w2ui-footer-btn {
+  display: inline-block;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 4px 8px;
+  color: #4b5563;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  text-decoration: none;
+}
+
+.w2ui-grid .w2ui-grid-footer .w2ui-footer-center .w2ui-footer-nav a.w2ui-footer-btn:hover {
+  color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.w2ui-grid .w2ui-grid-empty-msg {
+  position: absolute;
+  top: 27px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.w2ui-grid .w2ui-grid-empty-msg > div {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 45%;
+  transform: translateY(-45%);
+  text-align: center;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.w2ui-grid .w2ui-edit-box {
+  position: absolute;
+  z-index: 1001;
+  border: 2px solid #3b82f6;
+  pointer-events: auto;
+  padding: 2px !important;
+  margin: 0px !important;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+.w2ui-sidebar {
+  position: relative;
+  cursor: default;
+  overflow: hidden;
+  background-color: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.w2ui-sidebar * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.w2ui-sidebar > div {
+  position: absolute;
+  overflow: hidden;
+}
+
+.w2ui-sidebar .w2ui-sidebar-body {
+  position: absolute;
+  z-index: 1;
+  overflow: auto;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  padding: 8px 0px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.w2ui-sidebar .w2ui-sidebar-body .w2ui-node {
+  position: relative;
+  border-radius: 6px;
+  margin: 2px 8px;
+  padding: 2px 0px;
+  border: 1px solid transparent;
+}
+
+.w2ui-sidebar .w2ui-sidebar-body .w2ui-node .w2ui-node-text {
+  color: #374151;
+  text-shadow: none;
+  pointer-events: none;
+  font-size: 13px;
+}
+
+.w2ui-sidebar .w2ui-sidebar-body .w2ui-node:hover {
+  background-color: #f3f4f6;
+}
+
+.w2ui-sidebar .w2ui-sidebar-body .w2ui-node .w2ui-node-image {
+  width: 24px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.w2ui-sidebar .w2ui-sidebar-body .w2ui-node .w2ui-node-image > span {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.w2ui-sidebar .w2ui-sidebar-body .w2ui-node.w2ui-disabled,
+.w2ui-sidebar .w2ui-sidebar-body .w2ui-node.w2ui-disabled:hover {
+  background: transparent;
+  opacity: 0.5;
+}
+
+.w2ui-sidebar .w2ui-sidebar-body .w2ui-selected,
+.w2ui-sidebar .w2ui-sidebar-body .w2ui-selected:hover {
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+}
+
+.w2ui-sidebar .w2ui-sidebar-body .w2ui-selected .w2ui-node-text,
+.w2ui-sidebar .w2ui-sidebar-body .w2ui-selected:hover .w2ui-node-text {
+  color: #1d4ed8;
+  font-weight: 500;
+}
+
+.w2ui-sidebar .w2ui-sidebar-body .w2ui-node-text {
+  white-space: nowrap;
+  padding: 8px 0px 8px 8px;
+  margin: 1px 0px 1px 24px;
+  position: relative;
+  z-index: 1;
+  font-size: 13px;
+}
+
+.w2ui-sidebar .w2ui-sidebar-body .w2ui-node-group {
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 12px 0px 8px 12px;
+  margin: 0px;
+  cursor: default;
+  color: #6b7280;
+  background-color: transparent;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.w2ui-sidebar .w2ui-sidebar-body .w2ui-node-sub {
+  overflow: hidden;
+}
+
+.w2ui-sidebar .w2ui-sidebar-body .w2ui-node-data {
+  padding: 2px;
+}
+
+.w2ui-sidebar .w2ui-sidebar-body .w2ui-node-data .w2ui-node-image {
+  padding: 4px 0px 0px 0px;
+  float: left;
+}
+
+.w2ui-sidebar .w2ui-sidebar-body .w2ui-node-data .w2ui-node-image > span {
+  font-size: 16px;
+  color: #6b7280;
+}
+
+.w2ui-sidebar .w2ui-sidebar-body .w2ui-node-data .w2ui-node-count {
+  float: right;
+  border-radius: 20px;
+  width: auto;
+  padding: 2px 8px;
+  margin: 2px 4px 0 0;
+  background-color: #f3f4f6;
+  color: #4b5563;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* ============================================================
+   TABS
+   ============================================================ */
+.w2ui-tabs {
+  cursor: default;
+  overflow: hidden;
+  position: relative;
+  background-color: #ffffff;
+  min-height: 40px;
+  padding: 0px;
+  margin: 0px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.w2ui-tabs .w2ui-tabs-line {
+  display: none;
+}
+
+.w2ui-tabs .w2ui-scroll-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  padding: 0;
+}
+
+.w2ui-tabs .w2ui-scroll-wrapper .w2ui-tab {
+  height: 40px;
+  position: relative;
+  z-index: 20;
+  padding: 10px 20px;
+  text-align: center;
+  color: #6b7280;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  margin: 0;
+  cursor: pointer;
+  user-select: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.w2ui-tabs .w2ui-scroll-wrapper .w2ui-tab.active {
+  color: #3b82f6;
+  border-bottom: 2px solid #3b82f6;
+}
+
+.w2ui-tabs .w2ui-scroll-wrapper .w2ui-tab:hover {
+  background-color: #f9fafb;
+  color: #374151;
+}
+
+.w2ui-tabs .w2ui-scroll-wrapper .w2ui-tab.closable {
+  padding: 9px 28px 9px 20px;
+}
+
+.w2ui-tabs .w2ui-scroll-wrapper .w2ui-tab .w2ui-tab-close {
+  position: absolute;
+  right: 6px;
+  top: 10px;
+  color: #9ca3af;
+  float: right;
+  padding: 2px 4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.w2ui-tabs .w2ui-scroll-wrapper .w2ui-tab .w2ui-tab-close:hover {
+  background-color: #fee2e2;
+  color: #ef4444;
+}
+
+.w2ui-tabs .w2ui-scroll-wrapper .w2ui-tab .w2ui-tab-close:before {
+  content: '×';
+  position: relative;
+  top: -2px;
+}
+
+/* ============================================================
+   TOOLBAR
+   ============================================================ */
+.w2ui-toolbar {
+  background-color: #ffffff;
+  user-select: none;
+  padding: 6px 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.w2ui-toolbar .w2ui-tb-line {
+  overflow: hidden;
+  position: relative;
+  min-height: 32px;
+  padding: 0;
+  margin: 0;
+}
+
+.w2ui-toolbar .disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.w2ui-toolbar .w2ui-scroll-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  padding: 0;
+}
+
+.w2ui-toolbar .w2ui-scroll-wrapper .w2ui-tb-button {
+  position: relative;
+  z-index: 20;
+  height: 32px;
+  min-width: 32px;
+  padding: 4px 8px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background-color: transparent;
+  white-space: nowrap;
+  margin: 0 2px;
+  cursor: pointer;
+  user-select: none;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.w2ui-toolbar .w2ui-scroll-wrapper .w2ui-tb-button .w2ui-tb-icon {
+  float: left;
+  width: 24px;
+  margin: 2px 0 0 0;
+  text-align: center;
+}
+
+.w2ui-toolbar .w2ui-scroll-wrapper .w2ui-tb-button .w2ui-tb-icon > span {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.w2ui-toolbar .w2ui-scroll-wrapper .w2ui-tb-button .w2ui-tb-text {
+  margin-left: 24px;
+  color: #374151;
+  padding: 4px 4px 4px 0;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.w2ui-toolbar .w2ui-scroll-wrapper .w2ui-tb-button.over {
+  background-color: #f3f4f6;
+  border-color: #e5e7eb;
+}
+
+.w2ui-toolbar .w2ui-scroll-wrapper .w2ui-tb-button.checked {
+  background-color: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.w2ui-toolbar .w2ui-scroll-wrapper .w2ui-tb-button.checked .w2ui-tb-text {
+  color: #1d4ed8;
+}
+
+.w2ui-toolbar .w2ui-scroll-wrapper .w2ui-tb-button.down {
+  background-color: #f3f4f6;
+  transform: translateY(1px);
+}
+
+.w2ui-toolbar .w2ui-scroll-wrapper .w2ui-tb-button.no-icon .w2ui-tb-text {
+  margin-left: 0;
+}
+
+.w2ui-toolbar .w2ui-scroll-wrapper .w2ui-tb-break {
+  background-color: #e5e7eb;
+  width: 1px;
+  height: 24px;
+  padding: 0;
+  margin: 4px 8px;
+}
+
+/* ============================================================
+   POPUP
+   ============================================================ */
+.w2ui-popup {
+  position: fixed;
+  z-index: 1600;
+  overflow: hidden;
+  font-family: 'Inter', 'Noto Sans', 'Open Sans', sans-serif;
+  border-radius: 12px;
+  padding: 0px;
+  margin: 0px;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.w2ui-popup .w2ui-popup-title-btns {
+  float: right;
+  margin: 12px 12px 0 0;
+  font-size: 16px;
+}
+
+.w2ui-popup .w2ui-popup-title-btns .w2ui-popup-button {
+  float: right;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  color: #9ca3af;
+  margin: 0 0 0 4px;
+  z-index: 301;
+  position: relative;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.w2ui-popup .w2ui-popup-title-btns .w2ui-popup-button:hover {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.w2ui-popup .w2ui-popup-title {
+  padding: 16px 20px;
+  border-radius: 12px 12px 0px 0px;
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  position: absolute;
+  overflow: hidden;
+  height: auto;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  font-weight: 600;
+  font-size: 16px;
+  color: #1f2937;
+  z-index: 300;
+}
+
+.w2ui-popup .w2ui-box,
+.w2ui-popup .w2ui-box-temp {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 60px;
+  bottom: 68px;
+  z-index: 100;
+}
+
+.w2ui-popup .w2ui-popup-body {
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 20px;
+  color: #374151;
+  background-color: #ffffff;
+  position: absolute;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.w2ui-popup .w2ui-popup-buttons {
+  padding: 12px 16px;
+  border-radius: 0px 0px 12px 12px;
+  border-top: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+  text-align: right;
+  position: absolute;
+  overflow: hidden;
+  height: auto;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 200;
+}
+
+.w2ui-popup .w2ui-popup-buttons button {
+  margin-left: 8px;
+}
+
+/* ============================================================
+   UTILIDADES ADICIONALES
+   ============================================================ */
+.w2ui-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="%236b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2v4"/><path d="M12 20v-2"/><path d="M2 12h4"/><path d="M20 12h-4"/></svg>') no-repeat center;
+  background-size: contain;
+  animation: w2ui-spin 1s linear infinite;
+}
+
+@keyframes w2ui-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.w2ui-marker {
+  background-color: rgba(59, 130, 246, 0.2);
+}
+
+.w2ui-select {
+  cursor: pointer;
+  color: #374151 !important;
+}
+
+.w2ui-select.has-focus {
+  outline: auto #3b82f6;
+  background-color: #ffffff !important;
+}
+
+.w2ui-select[readonly],
+.w2ui-select[disabled] {
+  background-color: #f9fafb !important;
+  color: #9ca3af !important;
+  cursor: not-allowed;
+}
+
+/* Scroll personalizado (opcional) */
+.w2ui-reset ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.w2ui-reset ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.w2ui-reset ::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.w2ui-reset ::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

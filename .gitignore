@@ -1,0 +1,47 @@
+# Dependencias
+node_modules/
+package-lock.json
+yarn.lock
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+
+# Archivos temporales de la aplicación
+user-data/temp/*
+!user-data/temp/.gitkeep
+
+# Archivos compilados y distribución
+dist/
+build/
+*.exe
+*.dmg
+*.deb
+*.rpm
+*.AppImage
+*.zip
+
+# Configuración local
+.env
+.env.local
+neutralino.local.json
+
+# Archivos de usuario (opcional)
+user-data/templates/*
+user-data/data/*
+user-data/images/*
+!user-data/templates/.gitkeep
+!user-data/data/.gitkeep
+!user-data/images/.gitkeep
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Neutralino
+*.log
+.cache/

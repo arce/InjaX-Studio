@@ -1,0 +1,38 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "InjaX-Studio",
+  "version": "1.0.0",
+  "identifier": "com.tuapp.generador",
+  "build": {
+    "frontendDist": "../frontend/public"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "InjaX Studio",
+        "width": 1280,
+        "height": 800,
+        "minWidth": 1024,
+        "minHeight": 600,
+        "resizable": true
+      }
+    ],
+    "withGlobalTauri": true,
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [],
+    "resources": {
+      "../bin/injax_mac": "injax_mac",
+      "../bin/injax": "injax",
+      "../bin/injax.exe": "injax.exe",
+      "../bin/modules": "modules",
+      "../bin/readers": "readers"
+    }
+  }
+}

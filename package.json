@@ -1,0 +1,16 @@
+{
+  "name": "injax-studio",
+  "version": "1.0.0",
+  "description": "Generador de SVG con injax — aplicación de escritorio Tauri",
+  "scripts": {
+    "dev": "tauri dev",
+    "build": "tauri build",
+    "tauri": "tauri"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
