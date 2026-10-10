@@ -7,7 +7,7 @@ const AppState = {
     activeIndex: -1,     // índice del template activo (-1 = ninguno)
     datasets: [],        // [{name, content}, ...]
     activeDataIndex: -1, // índice del dataset activo (-1 = ninguno)
-    svg: null,
+    output: null,
     isGenerating: false,
     logs: []
 };
@@ -53,7 +53,7 @@ async function initApp() {
                 <div class="split-handle" id="leftHandle"></div>
                 <div class="split-pane" id="messagesPane" style="flex:0 0 160px;">
                     <div class="panel-header">
-                        <span class="panel-title">⚡ Messages</span>
+                        <span class="panel-title">Messages</span>
                         <span id="status" class="status-badge">-</span>
                     </div>
                     <div id="messagesArea" class="messages-area"></div>
@@ -69,11 +69,14 @@ async function initApp() {
                 {
                     type: 'menu', id: 'file', text: 'File',
                     items: [
-                        { id: 'file-open',  text: 'Open...' },
-                        { id: 'file-save',  text: 'Save'    },
-                        { id: 'file-close', text: 'Close'   },
+                        { id: 'file-open',    text: 'Open...'  },
                         { type: 'break' },
-                        { id: 'file-quit',  text: 'Quit'    },
+                        { id: 'file-save',    text: 'Save'     },
+                        { id: 'file-save-as', text: 'Save As...' },
+                        { type: 'break' },
+                        { id: 'file-close',   text: 'Close'    },
+                        { type: 'break' },
+                        { id: 'file-quit',    text: 'Quit'     },
                     ],
                 },
                 { type: 'break'  },
@@ -99,12 +102,14 @@ async function initApp() {
                 const editor = document.getElementById('templateEditor');
                 if (!editor) return;
                 switch (event.target) {
-                    // Menu sub-items: w2ui fires onClick with target = "parentId:subItemId"
                     case 'file:file-open':
                         loadTemplate();
                         break;
                     case 'file:file-save':
                         saveTemplate();
+                        break;
+                    case 'file:file-save-as':
+                        saveTemplateAs();
                         break;
                     case 'file:file-close': {
                         if (AppState.activeIndex < 0) break;
@@ -170,15 +175,15 @@ async function initApp() {
             <div class="split-col" id="rightCol">
                 <div class="split-pane" id="svgPane">
                     <div class="panel-header">
-                        <span class="panel-title">SVG Viewer</span>
+                        <span class="panel-title">Output</span>
                         <div style="display:flex;gap:6px;align-items:center;">
-                            <span class="file-badge" id="svgName">No SVG</span>
-                            <button id="generateBtn" class="btn-generate" onclick="generateSVG()" disabled>Generate</button>
-                            <button id="exportBtn"   class="btn-export"   onclick="exportSVG()"   disabled>Export</button>
+                            <span class="file-badge" id="svgName">No output</span>
+                            <button id="generateBtn" class="btn-generate" onclick="generateOutput()" disabled>Generate</button>
+                            <button id="exportBtn"   class="btn-export"   onclick="exportOutput()"   disabled>Export</button>
                         </div>
                     </div>
                     <div id="svgContainer" class="svg-container">
-                        <div class="empty-state"><div class="empty-icon"></div><p>Generate an SVG to view it here</p></div>
+                        <div class="empty-state"><div class="empty-icon"></div><p>Generate output to view it here</p></div>
                     </div>
                 </div>
                 <div class="split-handle" id="rightHandle"></div>
@@ -459,7 +464,7 @@ window.__TAURI__?.event?.listen('menu-action', (event) => {
         case 'template-save': saveTemplate(); break;
         case 'data-load':     loadData();     break;
         case 'data-save':     saveData();     break;
-        case 'view-generate': generateSVG();  break;
-        case 'view-save':     exportSVG();    break;
+        case 'view-generate': generateOutput();  break;
+        case 'view-save':     exportOutput();    break;
     }
 });

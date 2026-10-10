@@ -1,8 +1,8 @@
 use std::fs;
 use std::path::PathBuf;
 use std::process::Command;
+use serde::Serialize;
 use tauri::{Emitter, Manager};
-use tauri::menu::{MenuBuilder, MenuItemBuilder, SubmenuBuilder};
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -73,13 +73,23 @@ async fn save_dialog(
     }
 }
 
+// ─── Shared types ────────────────────────────────────────────────────────────
+
+#[derive(Serialize)]
+struct OpenedFile {
+    path: String,
+    name: String,
+    content: String,
+}
+
 // ─── Tauri commands ───────────────────────────────────────────────────────────
 
 #[tauri::command]
-async fn generate_svg(
+async fn generate_output(
     app: tauri::AppHandle,
     template_content: String,
     data_content: String,
+    output_ext: String,
 ) -> Result<String, String> {
     let injax_path = get_injax_binary(&app)?;
     ensure_executable(&injax_path)?;
@@ -92,9 +102,10 @@ async fn generate_svg(
         .unwrap_or_default()
         .subsec_nanos();
 
-    let template_path = temp_dir.join(format!("template_{}.j2",  id));
-    let data_path     = temp_dir.join(format!("data_{}.json",    id));
-    let output_path   = temp_dir.join(format!("output_{}.svg",   id));
+    let ext = if output_ext.is_empty() { "txt".to_string() } else { output_ext };
+    let template_path = temp_dir.join(format!("template_{}.inja", id));
+    let data_path     = temp_dir.join(format!("data_{}.json",     id));
+    let output_path   = temp_dir.join(format!("output_{}.{}",     id, ext));
 
     fs::write(&template_path, &template_content).map_err(|e| e.to_string())?;
     fs::write(&data_path,     &data_content    ).map_err(|e| e.to_string())?;
@@ -124,30 +135,30 @@ async fn generate_svg(
         return Err(if !stderr.is_empty() { stderr } else { stdout });
     }
 
-    let svg = fs::read_to_string(&output_path)
-        .map_err(|e| format!("Failed to read generated SVG: {}", e))?;
+    let content = fs::read_to_string(&output_path)
+        .map_err(|e| format!("Failed to read generated output: {}", e))?;
     let _ = fs::remove_file(&output_path);
 
-    if !svg.contains("<svg") {
-        return Err("Generated file is not a valid SVG".to_string());
-    }
-    Ok(svg)
+    Ok(content)
 }
 
 #[tauri::command]
-async fn save_svg(
+async fn save_output(
     app: tauri::AppHandle,
     content: String,
     default_name: String,
+    ext: String,
 ) -> Result<bool, String> {
     use tauri_plugin_dialog::DialogExt;
     use tokio::sync::oneshot;
 
     let (tx, rx) = oneshot::channel();
+    let filter_name = ext.to_uppercase();
+    let ext_ref: &str = ext.as_str();
     app.dialog()
         .file()
         .set_file_name(&default_name)
-        .add_filter("SVG", &["svg"])
+        .add_filter(&filter_name, &[ext_ref])
         .save_file(move |path| { let _ = tx.send(path); });
 
     match rx.await.map_err(|e| e.to_string())? {
@@ -156,15 +167,53 @@ async fn save_svg(
             let path = fp.into_path()
                 .map_err(|_| "Unsupported path type".to_string())?;
             fs::write(&path, content)
-                .map_err(|e| format!("Failed to save SVG: {}", e))?;
+                .map_err(|e| format!("Failed to save output: {}", e))?;
             Ok(true)
         }
     }
 }
 
+/// Open a file-picker dialog and return path + content of the chosen template.
+#[tauri::command]
+async fn open_template_file(app: tauri::AppHandle) -> Result<Option<OpenedFile>, String> {
+    use tauri_plugin_dialog::DialogExt;
+    use tokio::sync::oneshot;
+
+    let (tx, rx) = oneshot::channel();
+    app.dialog()
+        .file()
+        .add_filter("Jinja2 Template", &["inja", "injax", "j2", "jinja2", "jinja", "txt"])
+        .pick_file(move |path| { let _ = tx.send(path); });
+
+    match rx.await.map_err(|e| e.to_string())? {
+        None => Ok(None),
+        Some(fp) => {
+            let path = fp.into_path()
+                .map_err(|_| "Unsupported path type".to_string())?;
+            let name = path.file_name()
+                .map(|n| n.to_string_lossy().to_string())
+                .unwrap_or_else(|| "template.inja".to_string());
+            let content = fs::read_to_string(&path)
+                .map_err(|e| format!("Failed to read file: {}", e))?;
+            Ok(Some(OpenedFile {
+                path: path.to_string_lossy().to_string(),
+                name,
+                content,
+            }))
+        }
+    }
+}
+
+/// Save template content directly to an existing path (no dialog).
+#[tauri::command]
+async fn save_template_to_path(path: String, content: String) -> Result<(), String> {
+    fs::write(&path, content).map_err(|e| format!("Failed to save file: {}", e))
+}
+
+/// Save template with a Save-As dialog (always prompts for location).
 #[tauri::command]
 async fn save_template(app: tauri::AppHandle, content: String) -> Result<bool, String> {
-    save_dialog(app, content, "Jinja2 Template", &["j2", "jinja2", "jinja"]).await
+    save_dialog(app, content, "Jinja2 Template", &["j2", "jinja2", "jinja", "inja", "injax"]).await
 }
 
 #[tauri::command]
@@ -183,45 +232,14 @@ fn quit_app(app: tauri::AppHandle) {
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
-        .setup(|app| {
-            // Templates menu
-            let t_load = MenuItemBuilder::with_id("template-load", "Load Template...")
-                .accelerator("CmdOrCtrl+O").build(app)?;
-            let t_save = MenuItemBuilder::with_id("template-save", "Save Template...")
-                .accelerator("CmdOrCtrl+S").build(app)?;
-
-            // Data menu
-            let d_load = MenuItemBuilder::with_id("data-load", "Load Data...")
-                .accelerator("CmdOrCtrl+D").build(app)?;
-            let d_save = MenuItemBuilder::with_id("data-save", "Save Data...")
-                .accelerator("CmdOrCtrl+Shift+D").build(app)?;
-
-            // View menu
-            let v_gen  = MenuItemBuilder::with_id("view-generate", "Generate SVG")
-                .accelerator("CmdOrCtrl+G").build(app)?;
-            let v_save = MenuItemBuilder::with_id("view-save", "Save SVG...")
-                .accelerator("CmdOrCtrl+Shift+S").build(app)?;
-
-            let menu = MenuBuilder::new(app)
-                .item(&SubmenuBuilder::new(app, "Templates")
-                    .item(&t_load).item(&t_save).build()?)
-                .item(&SubmenuBuilder::new(app, "Data")
-                    .item(&d_load).item(&d_save).build()?)
-                .item(&SubmenuBuilder::new(app, "View")
-                    .item(&v_gen).item(&v_save).build()?)
-                .build()?;
-
-            app.set_menu(menu)?;
-
-            app.on_menu_event(|app, event| {
-                let _ = app.emit("menu-action", event.id().as_ref().to_string());
-            });
-
+        .setup(|_app| {
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
-            generate_svg,
-            save_svg,
+            generate_output,
+            save_output,
+            open_template_file,
+            save_template_to_path,
             save_template,
             save_data,
             quit_app,

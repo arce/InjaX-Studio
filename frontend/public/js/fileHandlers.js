@@ -15,7 +15,6 @@ function pickFile(accept) {
 
         input.addEventListener('change', (e) => cleanup(e.target.files[0] || null));
 
-        // Fallback: if the user closes the dialog without selecting, focus returns to window
         window.addEventListener('focus', function onFocus() {
             window.removeEventListener('focus', onFocus);
             setTimeout(() => {
@@ -40,25 +39,35 @@ function readFileAsText(file) {
 
 async function loadTemplate() {
     try {
-        const file = await pickFile('.inja,.injax,.txt');
-        if (!file) return;
+        let name, content, filePath = null;
 
-        const content = await readFileAsText(file);
+        if (window.__TAURI__) {
+            // Native dialog — gives us the real path for later Save support
+            const result = await window.__TAURI__.core.invoke('open_template_file');
+            if (!result) return;
+            ({ name, content, path: filePath } = result);
+        } else {
+            // Web / dev fallback
+            const file = await pickFile('.inja,.injax,.txt');
+            if (!file) return;
+            content = await readFileAsText(file);
+            name    = file.name;
+        }
+
         if (!content?.trim()) throw new Error('File is empty');
 
-        // Persist any edits to the currently active template before switching
         const editor = document.getElementById('templateEditor');
         if (AppState.activeIndex >= 0 && AppState.templates[AppState.activeIndex] && editor) {
             AppState.templates[AppState.activeIndex].content = editor.value;
         }
 
-        AppState.templates.push({ name: file.name, content });
+        AppState.templates.push({ name, content, filePath });
         const newIndex = AppState.templates.length - 1;
         rebuildTemplateDropdown();
         selectTemplate(newIndex);
 
-        updateStatus(`Template: ${file.name}`, 'ok');
-        addLog(`Template loaded: ${file.name}`);
+        updateStatus(`Template: ${name}`, 'ok');
+        addLog(`Template loaded: ${name}`);
         checkReady();
     } catch (error) {
         updateStatus('Error loading template', 'error');
@@ -82,7 +91,6 @@ async function loadData() {
             throw new Error('File is not valid JSON');
         }
 
-        // Flush current grid edits before switching
         syncGridToState();
 
         AppState.datasets.push({ name: file.name, content });
@@ -124,7 +132,6 @@ async function loadExistingSVG() {
 
 // ─── Render JSON table ────────────────────────────────────────────────────────
 
-// Active column list for the editable grid (needed to rebuild JSON on save)
 let _gridCols = [];
 
 function destroyDataGrid() {
@@ -133,7 +140,6 @@ function destroyDataGrid() {
     }
 }
 
-// Detect the dominant type of a column's values to set the right editable type
 function detectColumnType(data, col) {
     let intCount = 0, floatCount = 0, total = 0;
     for (const row of data) {
@@ -185,7 +191,6 @@ function renderJsonTable(data) {
     destroyDataGrid();
     _gridCols = [];
 
-    // Determine what kind of data we have
     const isArrayOfObjects = Array.isArray(data) && data.length > 0 && typeof data[0] === 'object';
     const isPlainObject    = data !== null && data !== undefined && typeof data === 'object' && !Array.isArray(data);
 
@@ -284,7 +289,6 @@ function renderJsonTable(data) {
     }
 }
 
-// Rebuild the active dataset's content from the current grid state
 function syncGridToState() {
     const grid = w2ui['dataGrid'];
     const ds = AppState.activeDataIndex >= 0 ? AppState.datasets[AppState.activeDataIndex] : null;
@@ -299,12 +303,37 @@ function syncGridToState() {
 
 // ─── Save template ────────────────────────────────────────────────────────────
 
+// Save to the original path without showing a dialog.
+// Falls back to Save As if no path is known.
 async function saveTemplate() {
     const tmpl = AppState.activeIndex >= 0 ? AppState.templates[AppState.activeIndex] : null;
-    if (!tmpl?.content?.trim()) {
-        alert('No template to save');
-        return;
+    if (!tmpl?.content?.trim()) { alert('No template to save'); return; }
+
+    if (tmpl.filePath) {
+        try {
+            await window.__TAURI__.core.invoke('save_template_to_path', {
+                path:    tmpl.filePath,
+                content: tmpl.content,
+            });
+            updateStatus('Template saved', 'ok');
+            addLog(`Template saved: ${tmpl.name}`);
+        } catch (error) {
+            const msg = typeof error === 'string' ? error : error?.message || String(error);
+            updateStatus('Error saving template', 'error');
+            addLog(`Error: ${msg}`);
+            alert(`Failed to save template: ${msg}`);
+        }
+    } else {
+        // No path known yet — delegate to Save As
+        await saveTemplateAs();
     }
+}
+
+// Save As: always shows a dialog and updates the stored path on success.
+async function saveTemplateAs() {
+    const tmpl = AppState.activeIndex >= 0 ? AppState.templates[AppState.activeIndex] : null;
+    if (!tmpl?.content?.trim()) { alert('No template to save'); return; }
+
     try {
         const saved = await window.__TAURI__.core.invoke('save_template', {
             content: tmpl.content,
@@ -312,6 +341,8 @@ async function saveTemplate() {
         if (saved) {
             updateStatus('Template saved', 'ok');
             addLog('Template saved successfully');
+            // Note: the Rust save_dialog doesn't return the chosen path yet,
+            // so filePath stays as-is. A future enhancement could return it.
         }
     } catch (error) {
         const msg = typeof error === 'string' ? error : error?.message || String(error);
@@ -324,7 +355,6 @@ async function saveTemplate() {
 // ─── Save JSON data ───────────────────────────────────────────────────────────
 
 async function saveData() {
-    // Flush any pending grid edits before saving
     syncGridToState();
     const ds = AppState.activeDataIndex >= 0 ? AppState.datasets[AppState.activeDataIndex] : null;
     if (!ds?.content) {
